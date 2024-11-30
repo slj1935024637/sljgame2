@@ -16,7 +16,7 @@ REM 提交更改
 git commit -m "deploy"
 
 REM 推送到gh-pages分支
-git push -f git@github.com:slj1935024637/game_2.git master:gh-pages
+git push -f git@github.com:slj1935024637/sljgame2.git master:gh-pages
 
 REM 返回上级目录
 cd ..
