@@ -5,7 +5,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useStore } from 'vuex'
-import GameEngine from '../game/GameEngine'
+import GameEngine from '@/game/GameEngine'
 
 const width = ref(800)
 const height = ref(600)

@@ -1,7 +1,7 @@
-import Player from './entities/Player'
-import Enemy from './entities/Enemy'
-import Projectile from './entities/Projectile'
-import TerrainGenerator from './TerrainGenerator'
+import Player from '@/game/entities/Player'
+import Enemy from '@/game/entities/Enemy'
+import Projectile from '@/game/entities/Projectile'
+import TerrainGenerator from '@/game/TerrainGenerator'
 
 export default class GameEngine {
   constructor(canvas, store) {

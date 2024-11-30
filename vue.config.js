@@ -5,5 +5,12 @@ module.exports = defineConfig({
     : '/',
   outputDir: 'dist',
   transpileDependencies: true,
-  lintOnSave: false
+  lintOnSave: false,
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@': require('path').resolve(__dirname, 'src')
+      }
+    }
+  }
 })

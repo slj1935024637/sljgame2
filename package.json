@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "deploy": "sh deploy.sh"
+    "serve": "D:\\slj_doc\\nodejs\\node.exe ./node_modules/@vue/cli-service/bin/vue-cli-service.js serve",
+    "build": "D:\\slj_doc\\nodejs\\node.exe ./node_modules/@vue/cli-service/bin/vue-cli-service.js build",
+    "lint": "D:\\slj_doc\\nodejs\\node.exe ./node_modules/@vue/cli-service/bin/vue-cli-service.js lint",
+    "deploy": "deploy.bat"
   },
   "dependencies": {
     "core-js": "^3.8.3",
