@@ -24,3 +24,35 @@ pnpm-debug.log*
 
 # Build files
 dist/
+dist/*
+*.map
+
+# Cache files
+.cache/
+.temp/
+.hot/
+
+# Generated files
+*.generated.*
+*.min.*
+bundle.*
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+
+# parcel-bundler cache
+.cache
+.parcel-cache
