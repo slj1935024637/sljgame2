@@ -1,6 +1,4 @@
-import Player from '@/game/entities/Player'
-import Enemy from '@/game/entities/Enemy'
-import Projectile from '@/game/entities/Projectile'
+import { Player, Enemy, Projectile } from '@/game/entities'
 import TerrainGenerator from '@/game/TerrainGenerator'
 
 export default class GameEngine {

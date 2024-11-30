@@ -11,31 +11,41 @@ module.exports = defineConfig({
   configureWebpack: {
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, 'src'),
+        '@': path.resolve(__dirname, 'src')
       },
-      extensions: ['.js', '.vue', '.json']
+      extensions: ['.js', '.vue', '.json'],
+      fallback: {
+        path: false
+      }
     },
     output: {
-      filename: '[name].[hash].js',
-      chunkFilename: '[name].[hash].js'
+      filename: 'js/[name].[contenthash].js',
+      chunkFilename: 'js/[name].[contenthash].js',
+      assetModuleFilename: 'assets/[name].[contenthash][ext]'
     },
     optimization: {
+      moduleIds: 'deterministic',
+      runtimeChunk: 'single',
       splitChunks: {
         chunks: 'all',
-        minSize: 20000,
-        maxSize: 250000,
         cacheGroups: {
-          vendors: {
-            name: 'chunk-vendors',
+          vendor: {
             test: /[\\/]node_modules[\\/]/,
-            priority: -10,
-            chunks: 'initial'
+            name: 'vendors',
+            chunks: 'all'
           },
-          common: {
-            name: 'chunk-common',
-            minChunks: 2,
-            priority: -20,
-            chunks: 'initial',
+          gameEntities: {
+            test: /[\\/]src[\\/]game[\\/]entities[\\/]/,
+            name: 'game-entities',
+            chunks: 'all',
+            enforce: true,
+            reuseExistingChunk: true
+          },
+          gameCore: {
+            test: /[\\/]src[\\/]game[\\/](?!entities[\\/])/,
+            name: 'game-core',
+            chunks: 'all',
+            enforce: true,
             reuseExistingChunk: true
           }
         }
@@ -50,6 +60,40 @@ module.exports = defineConfig({
         .end()
       .use('babel-loader')
         .loader('babel-loader')
+        .options({
+          presets: ['@babel/preset-env']
+        })
         .end()
+
+    // 确保游戏实体模块被打包
+    config.module
+      .rule('game-entities')
+      .test(/\.(js|vue)$/)
+      .include
+        .add(path.resolve(__dirname, 'src/game/entities'))
+        .end()
+      .use('babel-loader')
+        .loader('babel-loader')
+        .options({
+          presets: ['@babel/preset-env']
+        })
+        .end()
+
+    // 使用自定义模板
+    config
+      .plugin('html')
+      .tap(args => {
+        args[0].template = path.resolve(__dirname, 'public/index.template.html')
+        args[0].inject = true
+        args[0].minify = {
+          removeComments: true,
+          collapseWhitespace: true,
+          removeAttributeQuotes: false
+        }
+        args[0].scriptLoading = 'defer'
+        // 移除任何可能的额外脚本
+        delete args[0].scripts
+        return args
+      })
   }
 })

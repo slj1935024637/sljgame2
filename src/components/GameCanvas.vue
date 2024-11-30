@@ -14,9 +14,7 @@ let gameEngine = null
 
 onMounted(() => {
   const canvas = document.getElementById('gameCanvas')
-  const ctx = canvas.getContext('2d')
-  gameEngine = new GameEngine(canvas, ctx, store)
-  gameEngine.init()
+  gameEngine = new GameEngine(canvas, store)
   gameEngine.start()
 })
 
